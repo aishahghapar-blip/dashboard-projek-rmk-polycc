@@ -49,4 +49,3 @@ st.dataframe(df)
 # Chart
 st.subheader("Projek Mengikut Institusi")
 st.bar_chart(df['institusi'].value_counts())
-``
