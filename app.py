@@ -30,6 +30,11 @@ df = df.rename(columns={
     'negeri': 'negeri',
     'rmk': 'rmk'
 })
+
+# Clean & standardize Jenis Projek
+df['jenis'] = df['jenis'].str.replace(r'\s*-\s*', ' - ', regex=True)
+df['jenis'] = df['jenis'].str.strip()
+
 df['tahun'] = df['rp'].str.extract(r'(\d{4})')
 
 # Sidebar Filter
