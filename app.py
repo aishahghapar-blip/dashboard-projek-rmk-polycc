@@ -5,8 +5,16 @@ import pandas as pd
 st.title("DASHBOARD PROJEK PEMBANGUNAN POLYCC (RMK)")
 st.subheader("Analisis dan Pemantauan Projek RMK10 hingga RMK13")
 
-# Load data Excel
-df = pd.read_excel("RMK11 & RMK12 & RMK13.xlsx")
+# Load semua sheet (tab)
+all_sheets = pd.read_excel("RMK11 & RMK12 & RMK13.xlsx", sheet_name=None)
+
+df_list = []
+
+for name, data in all_sheets.items():
+    data['rp'] = name  # ambil nama tab (RP1 2016 dll)
+    df_list.append(data)
+
+df = pd.concat(df_list, ignore_index=True)
 
 # Clean column names
 df.columns = df.columns.str.strip().str.lower()
@@ -22,6 +30,8 @@ df = df.rename(columns={
     'negeri': 'negeri',
     'rmk': 'rmk'
 })
+df['tahun'] = df['rp'].str.extract(r'(\d{4})')
+
 # Sidebar Filter
 st.sidebar.header("Tapis Data")
 
