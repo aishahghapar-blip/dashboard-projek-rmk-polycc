@@ -35,6 +35,24 @@ df = df.rename(columns={
 df['jenis'] = df['jenis'].str.replace(r'\s*-\s*', ' - ', regex=True)
 df['jenis'] = df['jenis'].str.strip()
 
+# Fix typo & consistency
+df['jenis'] = df['jenis'].str.replace(r'\.+', '', regex=True)
+
+df['jenis'] = df['jenis'].replace({
+    'Fizikal - Kelengkapan/ Pera laten': 'Fizikal - Kelengkapan/Peralatan',
+    'Fizikal - Kelengkapan/ Peralatan': 'Fizikal - Kelengkapan/Peralatan',
+    'Fizikal - Kelengkapan / Peralatan': 'Fizikal - Kelengkapan/Peralatan'
+})
+
+# Remove titik pelik
+df['jenis'] = df['jenis'].str.replace(r'\.', '', regex=True)
+
+# Betulkan spacing
+df['jenis'] = df['jenis'].str.replace(r'\s*-\s*', ' - ', regex=True)
+
+# Buang space extra
+df['jenis'] = df['jenis'].str.strip()
+
 df['tahun'] = df['rp'].str.extract(r'(\d{4})')
 
 # Sidebar Filter
