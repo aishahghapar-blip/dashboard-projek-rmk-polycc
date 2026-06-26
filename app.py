@@ -8,6 +8,20 @@ st.subheader("Analisis dan Pemantauan Projek RMK10 hingga RMK13")
 # Load data Excel
 df = pd.read_excel("RMK11 & RMK12 & RMK13.xlsx")
 
+# Clean column names
+df.columns = df.columns.str.strip().str.lower()
+
+# Rename columns ikut Excel awak
+df = df.rename(columns={
+    'kod projek': 'kod_projek',
+    'nama projek': 'tajuk',
+    'skop': 'skop',
+    'kos keseluruhan': 'kos',
+    'jenis kategori projek': 'jenis',
+    'institusi/ bahagian': 'institusi',
+    'negeri': 'negeri',
+    'rmk': 'rmk'
+})
 # Sidebar Filter
 st.sidebar.header("Tapis Data")
 
