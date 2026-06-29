@@ -110,7 +110,6 @@ if not df.empty:
     ax1.axis('equal')
 
     st.pyplot(fig1)
-``
 
 # PIE CHART RP
 st.subheader("Peratusan Projek Mengikut RP")
