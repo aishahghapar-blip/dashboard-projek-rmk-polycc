@@ -3,7 +3,7 @@ import pandas as pd
 
 # Tajuk Dashboard
 st.title("DASHBOARD PROJEK PEMBANGUNAN POLYCC (RMK)")
-st.subheader("Analisis dan Pemantauan Projek RMK10 hingga RMK13")
+st.subheader("Analisis dan Pemantauan Projek RMK11 hingga RMK13")
 
 # Load semua sheet (tab)
 all_sheets = pd.read_excel("RMK11 & RMK12 & RMK13.xlsx", sheet_name=None)
@@ -106,6 +106,14 @@ jenis_count = df['jenis'].value_counts()
 
 fig, ax = plt.subplots()
 ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%')
+ax.axis('equal')
+
+st.pyplot(fig)
+
+colors = ['#4CAF50', '#2196F3', '#FFC107', '#FF5722']
+
+fig, ax = plt.subplots()
+ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%', colors=colors)
 ax.axis('equal')
 
 st.pyplot(fig)
