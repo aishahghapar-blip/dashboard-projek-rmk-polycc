@@ -91,7 +91,14 @@ col3.metric("Bilangan Negeri", df['negeri'].nunique())
 
 # Papar Data
 st.subheader("Senarai Projek")
-st.dataframe(df)
+df_display = df[['kod_projek','tajuk','kos_display','jenis','institusi','negeri','rmk']]
+
+df_display = df_display.rename(columns={
+    'kos_display': 'Kos (RM)'
+})
+
+st.dataframe(df_display)
+
 
 # Chart
 st.subheader("Projek Mengikut Institusi")
@@ -134,6 +141,9 @@ col3.metric("Jumlah Negeri", df['negeri'].nunique())
 # Clean kos dulu
 df['kos'] = df['kos'].astype(str).str.replace('[RM,]', '', regex=True)
 df['kos'] = pd.to_numeric(df['kos'], errors='coerce')
+
+# ✅ Format kos untuk display cantik
+df['kos_display'] = df['kos'].apply(lambda x: f"RM {x:,.0f}" if pd.notnull(x) else "")
 
 total_kos = df['kos'].sum()
 
