@@ -97,20 +97,29 @@ st.dataframe(df)
 st.subheader("Projek Mengikut Institusi")
 st.bar_chart(df['institusi'].value_counts())
 
-
 import matplotlib.pyplot as plt
 
-# ===================== PIE CHART =====================
-
-st.subheader("Peratusan Jenis Projek")
+# PIE CHART RMK
+st.subheader("Peratusan Projek Mengikut RMK")
 
 if not df.empty:
-    jenis_count = df['jenis'].value_counts()
+    rmk_count = df['rmk'].value_counts()
 
-    fig, ax = plt.subplots()
-    ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%')
-    ax.axis('equal')
+    fig1, ax1 = plt.subplots()
+    ax1.pie(rmk_count, labels=rmk_count.index, autopct='%1.1f%%')
+    ax1.axis('equal')
 
-    st.pyplot(fig)
-else:
-    st.warning("Tiada data untuk dipaparkan")
+    st.pyplot(fig1)
+``
+
+# PIE CHART RP
+st.subheader("Peratusan Projek Mengikut RP")
+
+if not df.empty:
+    rp_count = df['rp'].value_counts()
+
+    fig2, ax2 = plt.subplots()
+    ax2.pie(rp_count, labels=rp_count.index, autopct='%1.1f%%')
+    ax2.axis('equal')
+
+    st.pyplot(fig2)
