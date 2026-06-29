@@ -122,3 +122,29 @@ if not df.empty:
     ax2.axis('equal')
 
     st.pyplot(fig2)
+
+st.subheader("Ringkasan")
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Jumlah Projek", len(df))
+col2.metric("Jumlah Institusi", df['institusi'].nunique())
+col3.metric("Jumlah Negeri", df['negeri'].nunique())
+
+# Clean kos dulu
+df['kos'] = df['kos'].astype(str).str.replace('[RM,]', '', regex=True)
+df['kos'] = pd.to_numeric(df['kos'], errors='coerce')
+
+total_kos = df['kos'].sum()
+
+st.metric("Jumlah Kos Keseluruhan", f"RM {total_kos:,.0f}")
+
+st.subheader("Top 10 Institusi Projek")
+
+top_inst = df['institusi'].value_counts().head(10)
+st.bar_chart(top_inst)
+
+st.subheader("Trend Projek Mengikut Tahun")
+
+trend = df['tahun'].value_counts().sort_index()
+st.line_chart(trend)
