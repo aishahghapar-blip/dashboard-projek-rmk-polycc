@@ -123,13 +123,6 @@ if not df.empty:
 
     st.pyplot(fig2)
 
-st.subheader("Ringkasan")
-
-col1, col2, col3 = st.columns(3)
-
-col1.metric("Jumlah Projek", len(df))
-col2.metric("Jumlah Institusi", df['institusi'].nunique())
-col3.metric("Jumlah Negeri", df['negeri'].nunique())
 
 # Clean kos dulu
 df['kos'] = df['kos'].astype(str).str.replace('[RM,]', '', regex=True)
