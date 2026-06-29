@@ -117,3 +117,20 @@ ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%', colors=colors)
 ax.axis('equal')
 
 st.pyplot(fig)
+
+import matplotlib.pyplot as plt
+
+# ===================== PIE CHART =====================
+
+st.subheader("Peratusan Jenis Projek")
+
+if not df.empty:
+    jenis_count = df['jenis'].value_counts()
+
+    fig, ax = plt.subplots()
+    ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%')
+    ax.axis('equal')
+
+    st.pyplot(fig)
+else:
+    st.warning("Tiada data untuk dipaparkan")
