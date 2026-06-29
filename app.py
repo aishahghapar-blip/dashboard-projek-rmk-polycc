@@ -97,26 +97,6 @@ st.dataframe(df)
 st.subheader("Projek Mengikut Institusi")
 st.bar_chart(df['institusi'].value_counts())
 
-import matplotlib.pyplot as plt
-
-# Pie Chart - Jenis Projek
-st.subheader("Peratusan Jenis Projek")
-
-jenis_count = df['jenis'].value_counts()
-
-fig, ax = plt.subplots()
-ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%')
-ax.axis('equal')
-
-st.pyplot(fig)
-
-colors = ['#4CAF50', '#2196F3', '#FFC107', '#FF5722']
-
-fig, ax = plt.subplots()
-ax.pie(jenis_count, labels=jenis_count.index, autopct='%1.1f%%', colors=colors)
-ax.axis('equal')
-
-st.pyplot(fig)
 
 import matplotlib.pyplot as plt
 
