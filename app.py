@@ -67,7 +67,7 @@ rmk = st.sidebar.multiselect("RMK", df['rmk'].unique())
 
 # Filter Logic
 if search:
-    df = df[df['tajuk'].str.contains(search, case=False)]
+    df = df[df['tajuk'].astype(str).str.contains(search, case=False, na=False)]
 
 if negeri:
     df = df[df['negeri'].isin(negeri)]
@@ -140,4 +140,7 @@ st.bar_chart(top_inst)
 st.subheader("Trend Projek Mengikut Tahun")
 
 df['tahun'] = df['rp'].astype(str).str.extract(r'(\d{4})')
+
+trend = df['tahun'].value_counts().sort_index()
+
 st.line_chart(trend)
