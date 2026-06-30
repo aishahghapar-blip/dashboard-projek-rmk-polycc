@@ -139,5 +139,5 @@ st.bar_chart(top_inst)
 
 st.subheader("Trend Projek Mengikut Tahun")
 
-trend = df['tahun'].value_counts().sort_index()
+df['tahun'] = df['rp'].astype(str).str.extract(r'(\d{4})')
 st.line_chart(trend)
